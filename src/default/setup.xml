@@ -1,0 +1,15 @@
+<setup>
+  <block title="Global Settings for the Bing Search app" endpoint="admin/conf-inputs" entity="bing_search">
+	  
+      <text>Set the API key for the Bing search app</text>
+
+      <input field="key">
+        <label>Enter the Bing API key</label>
+        <type>text</type>
+      </input>
+      
+  </block>
+
+</setup>
+
+
