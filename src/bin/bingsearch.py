@@ -8,8 +8,8 @@ class BingSearch(SearchCommand):
         
         # Save the parameters
         self.query = query
-        self.offset = offset
-        self.count = count
+        self.offset = int(offset)
+        self.count = int(count)
         self.search_type = search_type
         
         # Initialize the class
@@ -26,7 +26,7 @@ class BingSearch(SearchCommand):
         if api_key is None:
             raise Exception("No Bing API key defined")
         
-        # Perform the search 
+        # Perform the search
         results = BingSearchInput.bing_search(query=self.query, key=api_key, search_type=self.search_type, count=self.count, offset=self.offset, logger=self.logger)
         
         self.output_results(results)

@@ -10,8 +10,5 @@ count = <integer>
 interval = <value>
 * Indicates how often to perform the search
 
-title = <value>
-* A title of the input
-
 key = <value>
 * Indicates how often to perform the search

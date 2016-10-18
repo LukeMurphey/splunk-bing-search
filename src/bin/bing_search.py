@@ -19,7 +19,6 @@ class BingSearch(ModularInput):
                        'use_single_instance': "false"}
         
         args = [
-                Field("title", "Title", "A short description", empty_allowed=False),
                 Field("key", "Bing API Key", "The Bing API key", empty_allowed=False),
                 IntegerField("count", "Result Count", "The number of search results to return", empty_allowed=False),
                 DurationField("interval", "Interval", "The interval defining how often to perform the check; can include time units (e.g. 15m for 15 minutes, 8h for 8 hours)", empty_allowed=False),
@@ -100,7 +99,49 @@ class BingSearch(ModularInput):
             return None
         
     @staticmethod
-    def bing_search(query, key, search_type='search', count=10, offset=0, return_raw_results=False, logger=None):
+    def bing_search(query, key, search_type='search', count=10, offset=0, logger=None):
+        """
+        Perform a search against Bing. If the count is above 50, then it will iterate and keep calling Bing to get results until hitting the limit.
+        
+        Arguments:
+        query -- The search to perform
+        key -- The API key to use for obtaining the results
+        search_type -- The type of the results to return. Should be one on of: search, news
+        count -- The number of results
+        offset -- The offset (the number of results to skip)
+        """
+        
+        try:
+            current_offset = offset
+            left_to_get = count
+            results = []
+            
+            # Keep looping, getting 50 results until we get all of the items
+            while left_to_get > 0:
+                
+                # Determine the number of results to get
+                if left_to_get > 50:
+                    count_to_get = 50
+                else:
+                    count_to_get = left_to_get
+                
+                # Get the results
+                results.extend(BingSearch.do_bing_search(query, key, search_type, count=count_to_get, offset=current_offset))
+                
+                # Update the offset
+                current_offset = current_offset + count_to_get
+                
+                # Update the number to retrieve
+                left_to_get = left_to_get - count_to_get
+                
+            # Return the results
+            return results
+        except Exception:
+            if logger is not None:
+                logger.exception("Exception")
+        
+    @staticmethod
+    def do_bing_search(query, key, search_type='search', count=10, offset=0, return_raw_results=False):
         """
         Perform a search against bing.
         
