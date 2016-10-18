@@ -1,7 +1,9 @@
 <setup>
   <block title="Global Settings for the Bing Search app" endpoint="admin/conf-inputs" entity="bing_search">
 	  
-      <text>Set the API key for the Bing search app</text>
+      <text>Set the API key for the Bing search app.
+      If you do not have a key, you can obtain one at <![CDATA[ <a target="_blank" href="https://datamarket.azure.com/dataset/bing/searchweb">Microsoft's Datamarket</a> ]]>.
+      You can get a free key that will support up to 5,000 queries a month.</text>
 
       <input field="key">
         <label>Enter the Bing API key</label>
