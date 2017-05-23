@@ -2,7 +2,9 @@
 Overview
 ================================================
 
-This app provides a mechanism for pulling web search results from Bing.
+This app provides a mechanism for pulling web search results from Bing. You can obtain results by using the included input or by running the "bingsearch" command from SPL like this:
+
+    | bingsearch query="splunk apps"
 
 
 
@@ -10,7 +12,18 @@ This app provides a mechanism for pulling web search results from Bing.
 Configuring Splunk
 ================================================
 
-This app exposes a new input type that can be configured in the Splunk Manager. To configure it, create a new input in the Manager under Data inputs > Bing Web Search.
+Install this app into Splunk by doing the following:
+
+  1. Log in to Splunk Web and navigate to "Apps » Manage Apps" via the app dropdown at the top left of Splunk's user interface
+  2. Click the "install app from file" button
+  3. Upload the file by clicking "Choose file" and selecting the app
+  4. Click upload
+  5. Restart Splunk if a dialog asks you to
+
+Once the app is installed, you can use the app by configuring a new input:
+  1. Navigate to "Settings » Data Inputs" at the menu at the top of Splunk's user interface.
+  2. Click "Bing Web Search"
+  3. Click "New" to make a new instance of an input
 
 You will need to obtain an API key from Microsoft. You can get a free key for up to 5,000 queries per month at https://datamarket.azure.com/dataset/bing/searchweb.
 
