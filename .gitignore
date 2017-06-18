@@ -16,3 +16,5 @@ var/
 .pydevproject
 .settings/
 .DS_Store
+
+tasks.json
