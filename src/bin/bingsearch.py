@@ -12,6 +12,9 @@ class BingSearch(SearchCommand):
         self.count = int(count)
         self.search_type = search_type
 
+        if query is None or len(query) == 0:
+            raise Exception("No query was provided")
+
         # Initialize the class
         SearchCommand.__init__( self, run_in_preview=True, logger_name='bing_search_command')
 
